@@ -1,0 +1,9 @@
+Tools
+-Visual studio code
+-azure cli
+-terraform 
+-git(look for git bash)
+
+commands
+az -v ==> to check azure cli version
+terraform -v==> to check terraform version
