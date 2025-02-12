@@ -7,3 +7,38 @@ Tools
 commands
 az -v ==> to check azure cli version
 terraform -v==> to check terraform version
+az login=> login by using azure credentials
+
+
+1. Virtual lab==> to perform all labs
+2. azure account==> that we will use to perform devops tasks (creaaating azure resources)
+
+
+DEVOPS==>
+
+DEVOPS is the UNION of people,Process and products 
+
+Plan & TRACk ==> DEVELOP=> BUILD AND TEST=> DEPLOY=> OPERATE=> MONITOR
+
+git
+-Git version control system
+-help us to track of code change
+-is used to collaborate
+
+
+Commands for GIT
+git config --global user.name "Your Name"==> github name
+git config --global user.email "your.email@example.com"==> email through which you have registered
+
+git init==> initialize a git repo under a perticular folder
+git clone==> it will clone a repo from a remote url
+
+pwd=> it will tell your current path where you are
+cd "<path>" => where you want to run your git commands
+
+git add . ==> this will add all the change that we have done in workspace
+git commit -m "added first commit" ==> create a placeholder for the change we have done.
+git remote add origin https://github.com/vikash-verma-profile/test-git-branch.git
+git branch -M main
+git push  origin main
+
