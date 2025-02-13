@@ -42,3 +42,30 @@ git remote add origin https://github.com/vikash-verma-profile/test-git-branch.gi
 git branch -M main
 git push  origin main
 
+git clone https://github.com/vikash-verma-profile/test-git-branch.git
+
+
+CI and CD
+
+
+-improve software quality and speed
+
+CD
+-CI +IAC (Infrasturucture as code)
+
+Azure boards
+Azure Pipline=> build test and deploy with cI/CD 
+Azure Repos=>Repos
+Azure test plan
+Azure Artifacts
+
+
+Terraform
+
+terraform init
+terraform validate
+terraform plan
+terraform apply
+terraform apply --auto-approve
+terraform destroy --auto-approve
+
