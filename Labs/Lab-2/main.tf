@@ -42,7 +42,15 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = azurerm_subnet.subnet.id
+    public_ip_address_id          = azurerm_public_ip.pip.id
   }
+}
+resource "azurerm_public_ip" "pip" {
+  name                = "Terraform-PIP"
+  location            = azurerm_resource_group.my_demo_rg.location
+  resource_group_name = azurerm_resource_group.my_demo_rg.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
 }
 resource "azurerm_linux_virtual_machine" "Vm" {
   name                            = "terraformVM"
@@ -66,5 +74,5 @@ resource "azurerm_linux_virtual_machine" "Vm" {
 
 }
 output "vm_public_ip" {
-  value=azurerm_linux_virtual_machine.Vm.public_ip_address
+  value = azurerm_public_ip.pip.ip_address
 }
