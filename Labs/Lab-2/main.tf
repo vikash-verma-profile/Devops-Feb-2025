@@ -27,3 +27,44 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = azurerm_resource_group.my_demo_rg.name
   address_space       = ["10.0.0.0/16"]
 }
+resource "azurerm_subnet" "subnet" {
+  name                 = "Terraform-Subnet"
+  resource_group_name  = azurerm_resource_group.my_demo_rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+resource "azurerm_network_interface" "nic" {
+  name                = "Terraform-NIC"
+  location            = azurerm_resource_group.my_demo_rg.location
+  resource_group_name = azurerm_resource_group.my_demo_rg.name
+
+  ip_configuration {
+    name                          = "internal"
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = azurerm_subnet.subnet.id
+  }
+}
+resource "azurerm_linux_virtual_machine" "Vm" {
+  name                            = "terraformVM"
+  location                        = azurerm_resource_group.my_demo_rg.location
+  resource_group_name             = azurerm_resource_group.my_demo_rg.name
+  size                            = "Standard_B1s"
+  admin_username                  = "azureuser"
+  admin_password                  = "vikash@123456"
+  disable_password_authentication = false
+  network_interface_ids           = [azurerm_network_interface.nic.id]
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+
+}
+output "vm_public_ip" {
+  value=azurerm_linux_virtual_machine.Vm.public_ip_address
+}
